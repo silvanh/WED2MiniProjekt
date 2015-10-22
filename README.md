@@ -35,29 +35,29 @@ Guest:
 ## Event API
 
 All events
-	GET /api/events
-	Example: [localhost:8080/api/events](http://localhost:8080/api/events)
+	- GET /api/events
+	- Example: [localhost:8080/api/events](http://localhost:8080/api/events)
 Add event
-	POST /api/events/
-	Example: POST [localhost:8080/api/events/](http://localhost:8080/api/events/), Header: Content-Type: application/json Body: { "name": "Dinner", "description": "...", "times":{"begin":"2015-11-15T19:00:00.000Z","end":"2011-11-16T03:00:00.000Z"}, "location", { ... }, ... }
+	- POST /api/events/
+	- Example: POST [localhost:8080/api/events/](http://localhost:8080/api/events/), Header: Content-Type: application/json Body: { "name": "Dinner", "description": "...", "times":{"begin":"2015-11-15T19:00:00.000Z","end":"2011-11-16T03:00:00.000Z"}, "location", { ... }, ... }
 Event by id
-	GET /api/events/{eventID}
-	Example: [localhost:8080/api/events/1](http://localhost:8080/api/events/1)
+	- GET /api/events/{eventID}
+	- Example: [localhost:8080/api/events/1](http://localhost:8080/api/events/1)
 Update event
-	POST /api/events/{eventID}
-	Example: POST [localhost:8080/api/events/1](http://localhost:8080/api/events/1), Header: Content-Type: application/json Body: { "description": "new Description", "location", { city: "new City", ... } }
+	- POST /api/events/{eventID}
+	- Example: POST [localhost:8080/api/events/1](http://localhost:8080/api/events/1), Header: Content-Type: application/json Body: { "description": "new Description", "location", { city: "new City", ... } }
 Guests of one event
-	GET /api/events/{eventID}/guests
-	Example: [localhost:8080/api/events/1/guests](http://localhost:8080/api/events/1/guests)
+	- GET /api/events/{eventID}/guests
+	- Example: [localhost:8080/api/events/1/guests](http://localhost:8080/api/events/1/guests)
 Add guest
-	POST /api/events/{eventID}/guests
-	Example: POST [localhost:8080/api/events/1/guests](http://localhost:8080/api/events/1/guests), Header: Content-Type: application/json Body: { "name": "Diana", "gift": "Cake", "comment": "" }
+	- POST /api/events/{eventID}/guests
+	- Example: POST [localhost:8080/api/events/1/guests](http://localhost:8080/api/events/1/guests), Header: Content-Type: application/json Body: { "name": "Diana", "gift": "Cake", "comment": "" }
 Guest by id
-	GET /api/events/{eventID}/guests/{guestID}
-	Example: [localhost:8080/api/events/1/guests/1](http://localhost:8080/api/events/1/guests/1)
+	- GET /api/events/{eventID}/guests/{guestID}
+	- Example: [localhost:8080/api/events/1/guests/1](http://localhost:8080/api/events/1/guests/1)
 Update guest
-	POST /api/events/{eventID}/guests/{guestID}
-	Example: POST [localhost:8080/api/events/1/guests/1](http://localhost:8080/api/events/1/guests/1), Header: Content-Type: application/json Body: { "canceled": true }
+	- POST /api/events/{eventID}/guests/{guestID}
+	- Example: POST [localhost:8080/api/events/1/guests/1](http://localhost:8080/api/events/1/guests/1), Header: Content-Type: application/json Body: { "canceled": true }
 
 ## Benutzeroberfläche
 
