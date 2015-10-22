@@ -67,7 +67,7 @@ Update guest
 	- Example: POST localhost:8080/api/events/1/guests/1
 		- Header: Content-Type: application/json 
 		- Body: { "canceled": true }
-``
+```
 
 ## Benutzeroberfläche
 
