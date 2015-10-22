@@ -34,6 +34,7 @@ Guest:
 
 ## Event API
 
+```yaml
 All events
 	- GET /api/events
 	- Example: [localhost:8080/api/events](http://localhost:8080/api/events)
@@ -58,6 +59,7 @@ Guest by id
 Update guest
 	- POST /api/events/{eventID}/guests/{guestID}
 	- Example: POST [localhost:8080/api/events/1/guests/1](http://localhost:8080/api/events/1/guests/1), Header: Content-Type: application/json Body: { "canceled": true }
+```
 
 ## Benutzeroberfläche
 
