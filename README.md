@@ -1,4 +1,4 @@
-# WED2MiniProjekt - Event Applikation
+# Event Applikation
 
 ## Daten Model
 
