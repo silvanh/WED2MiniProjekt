@@ -1,30 +1,26 @@
-/**
- * Created by silvan on 10/21/15.
- */
-
-
-define(['tests/factories/eventFactory', 'app/controllers/event/eventListController', 'frameworks/angular', 'libraries/angularMocks', 'app/services/storageService'],
-    function (EventFactory, EventListController, Angular, AngularMocks, StorageService) {
+define(['app/controllers/event/listController', 'frameworks/angular', 'libraries/angularMocks'],
+    function (EventListController, Angular, AngularMocks) {
     'use strict';
-    var eventListController;
 
-    beforeEach(AngularMocks.inject(function($rootScope){
-        var scope = $rootScope.$new();
-        var storageService = new StorageService();
-        eventListController = new EventListController(scope, storageService);
-        event = EventFactory.createEvent();
-        eventListController.scope.events.add(event);
+    var scope, eventRepository, $httpBackend;
+
+    beforeEach(AngularMocks.inject(function($injector) {
+        scope = $injector.get('$rootScope').$new();
+
+        var events = [{id: 1, name: 'Dinner'},{id: 2, name: 'Lunch'},{id: 3, name: 'Brunch'}];
+        // Mock repository to test controller only
+        eventRepository = {
+            all: function(successCallback) {
+                successCallback(events);
+            }
+        };
     }));
 
     describe('EventListController', function() {
         describe('property scope', function() {
             it('contains 3 events', function() {
-                expect(1).toBe(eventListController.scope.events.all().length);
-            });
-            it('Expects event id to be UUID', function() {
-                var uuidRegex = new RegExp('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}');
-                var events = eventListController.scope.events.all();
-                expect(events[0].id).toMatch(uuidRegex);
+                var eventListController = new EventListController(scope, eventRepository);
+                expect(3).toBe(eventListController.scope.events.length);
             });
         });
     });
