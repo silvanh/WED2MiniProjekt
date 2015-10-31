@@ -6,7 +6,7 @@ define(['frameworks/angular', 'app/controllers/eventListController', 'app/servic
     'use strict'
 
     // Create new empty app/module named 'lafete'
-    var Lafete = Angular.module('lafete', []);
+    var Lafete = Angular.module('lafete', ['ngRoute']);
 
     // Services Definieren
     Lafete.service('StorageService', StorageService);
