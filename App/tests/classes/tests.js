@@ -33,4 +33,8 @@ require([,'libraries/jasmine-boot'], function () {
         //trigger Jasmine
         window.onload();
     });
+    require(['tests/services/storageServiceTest'], function(){
+        //trigger Jasmine
+        window.onload();
+    });
 });
