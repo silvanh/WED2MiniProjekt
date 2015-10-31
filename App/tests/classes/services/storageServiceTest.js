@@ -1,4 +1,4 @@
-define(['tests/factories/eventFactory', 'app/model/event', 'app/services/storageService', 'app/controllers/eventListController'], function (EventFactory, Event, StorageService, EventListController) {
+define(['tests/factories/eventFactory', 'app/model/event', 'app/services/storageService'], function (EventFactory, Event, StorageService) {
 	'use strict';
 
 	describe('EventStorageService test suite', function() {

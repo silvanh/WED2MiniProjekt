@@ -19,18 +19,3 @@ require.config({
         }
     }
 });
-
-require(['frameworks/angular', 'app/modules/lafete'], function (Angular, Lafete) {
-    Lafete.config(function($routeProvider) {
-        $routeProvider.when('/list', {
-            controller: 'EventListController',
-            templateUrl: '/views/list.html'
-        })
-        .otherwise({
-            redirectTo: '/list'
-        });
-    });
-    Angular.element(document).ready(function() {
-        Angular.bootstrap(document, [Lafete.name]);
-    });
-});

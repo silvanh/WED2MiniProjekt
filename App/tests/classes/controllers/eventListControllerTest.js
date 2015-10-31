@@ -3,7 +3,7 @@
  */
 
 
-define(['tests/factories/eventFactory', 'app/controllers/eventListController', 'frameworks/angular', 'libraries/angularMocks', 'app/services/storageService'],
+define(['tests/factories/eventFactory', 'app/controllers/event/eventListController', 'frameworks/angular', 'libraries/angularMocks', 'app/services/storageService'],
     function (EventFactory, EventListController, Angular, AngularMocks, StorageService) {
     'use strict';
     var eventListController;

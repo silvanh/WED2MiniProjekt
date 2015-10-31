@@ -4,9 +4,7 @@
             {{event.name}}, {{event.place}}, {{event.date | date:"dd.MM.yy"}}
         </li>-->
         <li data-ng-repeat="event in events">
-            <strong>{{event.name}}</strong>
-            {{event.location.name}}, {{event.location.street}}, {{event.location.zipCode}},{{event.location.city}}
-            {{event.times.begin | date:"dd.MM.yy HH:mm"}} - {{event.times.end | date:"dd.MM.yy HH:mm"}}
+            < data-ng-href="#/events/{{event.id}}"><strong>{{event.name}}</strong></a>
         </li>
     </ul>
 </div>
