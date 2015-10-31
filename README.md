@@ -2,6 +2,13 @@
 
 ## Usage
 
+Start node server:
+```bash
+cd server
+npm install
+node server.js
+```
+
 Install http-server:
 
 ```bash

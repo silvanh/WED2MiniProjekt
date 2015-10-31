@@ -15,8 +15,8 @@ define(['app/model/event'], function (Event) {
                     city: 'Rapperswil'
                 },
                 {
-                    begin: new Date('2015-10-10T12:00:00.000Z'),
-                    end: new Date('2015-10-10T13:00:00.000Z')
+                    begin: new Date('2015-10-10T18:00:00.000Z'),
+                    end: new Date('2015-10-11T02:00:00.000Z')
                 },
                 10,
                 identifier
