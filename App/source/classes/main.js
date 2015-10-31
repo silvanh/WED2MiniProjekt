@@ -1,6 +1,3 @@
-/**
- * Created by silvan on 10/21/15.
- */
 require.config({
     // base url relative to the index.html
     baseUrl: './',
@@ -18,4 +15,10 @@ require.config({
                 deps: ['frameworks/angular']
         }
     }
+});
+
+require(['frameworks/angular', 'app/modules/lafete'], function (Angular, Lafete) {
+    Angular.element(document).ready(function() {
+        Angular.bootstrap(document, [Lafete.name]);
+    });
 });

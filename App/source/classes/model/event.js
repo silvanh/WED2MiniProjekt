@@ -35,5 +35,18 @@ define(['app/services/uuidService'], function(UUIDService){
         });
     };
 
+    Event.createFromDTO = function(jsonData) {
+        return new Event(
+            jsonData.name,
+            jsonData.description,
+            jsonData.targetGroup,
+            jsonData.eventGift,
+            jsonData.location,
+            jsonData.times,
+            jsonData.maximalAmoutOfGuests,
+            jsonData.id
+        );
+    };
+
     return Event;
 });
