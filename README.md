@@ -1,5 +1,19 @@
 # Event Applikation
 
+## Usage
+
+Install http-server:
+
+```bash
+npm install -g http-server
+```
+
+Go to directory App/source for the source project or App/tests to run the yasmine tests and run http-server.
+```bash
+cd App/source or App/tests
+http-server
+```
+
 ## Daten Model
 
 ```yaml
