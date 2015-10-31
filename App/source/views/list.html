@@ -1,0 +1,12 @@
+<div>
+    <ul data-ng-controller="EventListController">
+       <!-- <li data-ng-repeat="event in events">
+            {{event.name}}, {{event.place}}, {{event.date | date:"dd.MM.yy"}}
+        </li>-->
+        <li data-ng-repeat="event in events">
+            <strong>{{event.name}}</strong>
+            {{event.location.name}}, {{event.location.street}}, {{event.location.zipCode}},{{event.location.city}}
+            {{event.times.begin | date:"dd.MM.yy HH:mm"}} - {{event.times.end | date:"dd.MM.yy HH:mm"}}
+        </li>
+    </ul>
+</div>

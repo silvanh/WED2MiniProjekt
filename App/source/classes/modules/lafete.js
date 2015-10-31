@@ -2,7 +2,7 @@
  * Created by silvan on 10/21/15.
  */
 // declare dependency to angular (similar to import in java)
-define(['frameworks/angular', 'app/controllers/eventListController', 'app/services/storageService'], function (Angular, EventListController,StorageService) {
+define(['frameworks/angular', 'libraries/angularRoute', 'app/controllers/eventListController', 'app/services/storageService'], function (Angular, ngRoute, EventListController, StorageService) {
     'use strict'
 
     // Create new empty app/module named 'lafete'
