@@ -19,6 +19,10 @@ define(['app/controllers/eventListController', 'frameworks/angular', 'libraries/
             it('contains 3 events', function() {
                 expect(3).toBe(eventListController.scope.events.length);
             });
+            it('Expects event id to be UUID', function() {
+                var uuidRegex = new RegExp('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}');
+                expect(eventListController.scope.events[0].id).toMatch(uuidRegex);
+            });
         });
     });
 });
