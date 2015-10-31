@@ -4,7 +4,7 @@
 
 Start node server:
 ```bash
-cd server
+cd App/server
 npm install
 node server.js
 ```
