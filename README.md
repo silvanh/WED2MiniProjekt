@@ -9,17 +9,18 @@ npm install
 node server.js
 ```
 
-Install http-server:
+Go to localhost:8080
 
-```bash
-npm install -g http-server
-```
+you'll see the Angular-frontend of the application
 
-Go to directory App/source for the source project or App/tests to run the yasmine tests and run http-server.
-```bash
-cd App/source or App/tests
-http-server
-```
+Go to localhost8080/tests
+
+you'll see the the jasmine test suites
+
+Go to localhost:8080/api
+
+you'll see specified backend api
+
 
 ## Daten Model
 
