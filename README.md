@@ -8,17 +8,18 @@ cd App/server
 npm install
 node server.js
 ```
-
-Go to localhost:8080
-
+```yaml
+-Go to localhost:8080
+```
 you'll see the Angular-frontend of the application
-
-Go to localhost8080/tests
+```yaml
+-Go to localhost8080/tests
+```
 
 you'll see the the jasmine test suites
-
-Go to localhost:8080/api
-
+```yaml
+-Go to localhost:8080/api
+```
 you'll see specified backend api
 
 
