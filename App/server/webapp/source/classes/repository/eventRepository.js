@@ -25,32 +25,31 @@ define(['app/model/event'], function(Event) {
                     successCallback(events);
                 });
         };
-        /**
-         * Find event by identifier
-         *
-         * @param string identifier
-         * @return Event or null
-         */
-        this.get = function(identifier) {
-            var event = this.events.filter(function(event) {
-                return event.id == identifier
-            })[0];
-            return (event) ? event : null;
-        };
-        /**
-         * Add event if not already in list
-         * @param Event event
-         * @return boolean if added successfull
-         */
-        this.add = function(event) {
-            if(this.get(event.id)) {
-                return false;
-            } else {
-                this.events.push(event);
-                return true;
-            }
-        };
+      /**
+       * Find event by identifier
+       *
+       * @param string identifier
+       */
+      this.get = function(id, successCallback, errorCallback) {
+        $http.get(this.urls.get.replace(':eventId', id))
+          .success(function(eventDTO) {
+            successCallback(Event.createFromDTO(eventDTO));
+          })
+          .error(errorCallback);
+      };
 
+      /**
+       * Add event
+       * @param Event event
+       */
+      this.add = function(event, successCallback, errorCallback) {
+        $http.post(this.urls.add, event)
+          .success(function(eventDTO) {
+            successCallback(Event.createFromDTO(eventDTO));
+          })
+          .error(errorCallback);
+      };
+        /*
         // initialization
         this.events.push(
             new Event(
@@ -111,7 +110,7 @@ define(['app/model/event'], function(Event) {
                 null,
                 '39f0881d-ce23-44e9-81c3-1c8157380894'
             )
-        );
+        );*/
     };
 
     return EventRepository;
