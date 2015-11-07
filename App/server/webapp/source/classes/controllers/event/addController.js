@@ -3,7 +3,7 @@ define([], function() {
 
   var EventAddController = function($scope, $routeParams, EventRepository) {
     this.scope = $scope;
-    this.scope.test = "test";
+    this.scope.test = "just a test site";
   }
 
   return EventAddController;
