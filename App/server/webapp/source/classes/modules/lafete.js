@@ -2,12 +2,12 @@
  * Created by silvan on 10/21/15.
  */
 // declare dependency to angular (similar to import in java)
-define(['frameworks/angular', 'libraries/angularRoute', 'app/controllers/event/listController', 'app/controllers/event/detailController', 'app/controllers/event/addController', 'app/repository/eventRepository'],
+define(['frameworks/angular', 'libraries/angularRoute', 'app/controllers/event/listController', 'app/controllers/event/detailController', 'app/controllers/event/addController', 'app/repository/eventRepository','libraries/bootstrap/js/ui-bootstrap-tpls-0.14.3.min'],
     function (Angular, ngRoute, EventListController, EventDetailController, EventAddController, EventRepository) {
     'use strict'
 
     // modules
-    var Lafete = Angular.module('lafete', ['ngRoute']);
+    var Lafete = Angular.module('lafete', ['ngRoute', 'ui.bootstrap']);
 
     // services
     EventRepository.$inject = ['$http'];
