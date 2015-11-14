@@ -41,9 +41,20 @@ define(['app/model/event'], function(Event) {
     $scope.endTime= refDate;
 
     this.scope.add =  function(){
-      var newEvent = new Event();
-      console.log(getHours($scope.endTime));
-      //TODO event adden
+      var begin = new Date(
+        $scope.startDate.getFullYear(),
+        $scope.startDate.getMonth(),
+        $scope.startDate.getDate(),
+        $scope.startTime.getHours(),
+        $scope.startDate.getMinutes()
+      );
+      var end =  new Date(
+        $scope.endDate.getFullYear(),
+        $scope.endDate.getMonth(),
+        $scope.endDate.getDate(),
+        $scope.endTime.getHours(),
+        $scope.endTime.getMinutes()
+      );
     }
   }
 
