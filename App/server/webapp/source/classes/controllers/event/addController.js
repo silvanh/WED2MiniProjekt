@@ -34,8 +34,16 @@ define(['app/model/event'], function(Event) {
       endDateOpened: false
     };
 
+    var refDate= new Date();
+    refDate.setHours(12);
+    refDate.setMinutes(0);
+    $scope.startTime = refDate;
+    $scope.endTime= refDate;
+
     this.scope.add =  function(){
       var newEvent = new Event();
+      console.log(getHours($scope.endTime));
+      //TODO event adden
     }
   }
 

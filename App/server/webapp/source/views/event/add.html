@@ -3,7 +3,6 @@
 <h3>
     <span class="label label-pill label-default">Begin</span>
 </h3>
-<div class="input-group">
     <div class="col-md-6">
         <p class="input-group">
             <input type="text" placeholder="dd-MM-yy" class="form-control" uib-datepicker-popup="{{format}}" ng-model="startDate" is-open="status.startDateOpened"  ng-required="true" close-text="Close" />
@@ -12,12 +11,10 @@
               </span>
         </p>
     </div>
-    <input type="time" class="form-control" placeholder="hh:mm" ng-model="startTime">
-</div>
+    <uib-timepicker ng-model="startTime" ng-change="changed()" hour-step="1" minute-step="5" show-meridian="ismeridian"></uib-timepicker>
 <h3>
     <span class="label label-pill label-default">End</span>
 </h3>
-<div class="input-group">
     <div class="col-md-6">
         <p class="input-group">
             <input type="text" placeholder="dd-MM-yy" class="form-control" uib-datepicker-popup="{{format}}" ng-model="endDate" is-open="status.endDateOpened"  ng-required="true" close-text="Close" />
@@ -26,8 +23,7 @@
               </span>
         </p>
     </div>
-    <input type="time" class="form-control" placeholder="hh:mm" ng-model="endTime">
-</div>
+    <uib-timepicker ng-model="endTime" ng-change="changed()" hour-step="1" minute-step="5" show-meridian="ismeridian"></uib-timepicker>
 
 <h3>
     <span class="label label-pill label-default">Description</span>
