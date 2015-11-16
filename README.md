@@ -114,8 +114,8 @@ Update guest
 	- Add Guest View: Test über erfolgreiches Hinzufügen eines neuen Gastes
 	- Test jeder Repository-Methode/API-Calls mit gemocktem $httpBackend.
 	
-## Testat Kriterien  Zusätzliche Hinweise/Regeln
--Teamarbeit: Mindestens 2 Personen, höchstens 3 Personen. Alle Personen müssen sich zu gleichen Teilen am Projekt beteiligen.
+## Zusätzliche Hinweise/Regeln
+- Teamarbeit: Mindestens 2 Personen, höchstens 3 Personen. Alle Personen müssen sich zu gleichen Teilen am Projekt beteiligen.
 - CSS Präprozessoren wie Less oder Sass sind erlaubt.
 - JavaScript Precompiler wie TypeScript oder CoffeeScript sind erlaubt. Dart ist nur als Präprozessor erlaubt (nicht mit Dartium-Browser).
 - RequireJS wird als Module-Loader verwendet.
