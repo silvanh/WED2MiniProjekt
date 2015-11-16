@@ -1,11 +1,8 @@
-/**
- * Created by silvan on 10/23/15.
- */
 
 define(['app/services/uuidService'], function(UUIDService){
     'use strict'
 
-    var Event = function(name, description, targetGroup, contributionsDescription, location, times, maximalAmountOfGuests, id){
+    var Event = function(name, description, targetGroup, contributionsDescription, location, times, maximalAmountOfGuests, id,guests){
         this.id = id || UUIDService.getRandomUuid();
         this.name=name;
         this.description=description;
@@ -13,6 +10,7 @@ define(['app/services/uuidService'], function(UUIDService){
         this.contributionsDescription=contributionsDescription;
         this.location=location;
         this.times=times;
+        this.guests=guests || [];
         this.maximalAmountOfGuests=maximalAmountOfGuests;
 
         Object.defineProperties(this, {
@@ -40,11 +38,12 @@ define(['app/services/uuidService'], function(UUIDService){
             jsonData.name,
             jsonData.description,
             jsonData.targetGroup,
-            jsonData.eventGift,
+            jsonData.contributionsDescription,
             jsonData.location,
             jsonData.times,
             jsonData.maximalAmoutOfGuests,
-            jsonData.id
+            jsonData.id,
+            jsonData.guests
         );
     };
 

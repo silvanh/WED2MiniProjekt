@@ -4,8 +4,8 @@ require.config({
     paths: {
         'frameworks/angular': ['frameworks/angular/angular.min'],
         'libraries/angularRoute': ['libraries/angularRoute/angular-route.min'],
-        'app': ['classes']/*,
-        'ui-bootstrap':['libraries/bootstrap/ui-bootstrap-tpls-0.14.3.min']*/
+        'app': ['classes'],
+        'moment': ['libraries/moment/moment']
     },
     // angular does not support async loading out of the box -> use the shim loader
     shim: {
@@ -14,10 +14,7 @@ require.config({
         },
         'libraries/angularRoute': {
                 deps: ['frameworks/angular']
-        }/*,
-        'ui-bootstrap': {
-                deps: ['frameworks/angular']
-      }*/
+        }
     }
 });
 

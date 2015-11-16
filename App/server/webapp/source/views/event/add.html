@@ -1,14 +1,14 @@
-<input type="text" class="form-control" placeholder="Event name" ng-model="name">
+<input type="text" class="form-control" placeholder="Event name" ng-model="eventName">
 
 <h3>
     <span class="label label-pill label-default">Begin</span>
 </h3>
     <div class="col-md-6">
         <p class="input-group">
-            <input type="text" placeholder="dd-MM-yy" class="form-control" uib-datepicker-popup="{{format}}" ng-model="startDate" is-open="status.startDateOpened"  ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
+            <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="openStartDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
+            </span>
+            <input type="text" placeholder="dd-MM-yy" class="form-control" uib-datepicker-popup="{{format}}" ng-model="startDate" is-open="status.startDateOpened"  ng-required="true" close-text="Close" />
         </p>
     </div>
     <uib-timepicker ng-model="startTime" ng-change="changed()" hour-step="1" minute-step="5" show-meridian="ismeridian"></uib-timepicker>
@@ -17,13 +17,14 @@
 </h3>
     <div class="col-md-6">
         <p class="input-group">
-            <input type="text" placeholder="dd-MM-yy" class="form-control" uib-datepicker-popup="{{format}}" ng-model="endDate" is-open="status.endDateOpened"  ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
+            <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="openEndDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
+            </span>
+                <input type="text" placeholder="dd-MM-yy" class="form-control" uib-datepicker-popup="{{format}}" ng-model="endDate" is-open="status.endDateOpened"  ng-required="true" close-text="Close" />
         </p>
     </div>
     <uib-timepicker ng-model="endTime" ng-change="changed()" hour-step="1" minute-step="5" show-meridian="ismeridian"></uib-timepicker>
+
 
 <h3>
     <span class="label label-pill label-default">Description</span>
@@ -33,11 +34,32 @@
 <h3>
     <span class="label label-pill label-default">Target group</span>
 </h3>
-<input type="text" class="form-control" placeholder="..." ng-model="targetGroup">
+<input type="text" list="targets" class="form-control" placeholder="..." ng-model="targetGroup">
+<datalist id="targets">
+    <option ng-repeat="event in events" value="{{event.targetGroup}}"></option>
+</datalist>
 
 <h3>
     <span class="label label-pill label-default">Contribution Description</span>
 </h3>
 <input type="text" class="form-control" placeholder="..." ng-model="contributionDescription">
+<h3>
+    <span class="label label-pill label-default">Location</span>
+</h3>
+<h4>Name</h4>
+<input type="text" class="form-control" placeholder="..." ng-model="location.name">
+<h4>street</h4>
+<input type="text" class="form-control" placeholder="..." ng-model="location.street">
+<h4>zip-Code</h4>
+<input type="text" class="form-control" placeholder="..." ng-model="location.plz">
+<h4>city</h4>
+<input type="text" class="form-control" placeholder="..." ng-model="location.city">
+<h3>
+    <span class="label label-pill label-default">Maximal amount of Guests(1-100)</span>
+</h3>
+<div>{{maxGuests}}</div>
+<input type="range" class="form-control"  ng-model="maxGuests" min="1" max="100">
 
 <input class="btn btn-primary" type="submit" value="Add Event" ng-click="add()">
+
+<!--datetimepicker data-ng-model="data.date" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>

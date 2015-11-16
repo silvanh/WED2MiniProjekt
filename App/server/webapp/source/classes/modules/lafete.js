@@ -2,12 +2,14 @@
  * Created by silvan on 10/21/15.
  */
 // declare dependency to angular (similar to import in java)
-define(['frameworks/angular', 'libraries/angularRoute', 'app/controllers/event/listController', 'app/controllers/event/detailController', 'app/controllers/event/addController', 'app/repository/eventRepository','libraries/bootstrap/js/ui-bootstrap-tpls-0.14.3.min'],
-    function (Angular, ngRoute, EventListController, EventDetailController, EventAddController, EventRepository) {
+define(['frameworks/angular', 'libraries/angularRoute',
+    'app/controllers/event/listController', 'app/controllers/event/detailController', 'app/controllers/event/addController','app/controllers/guest/addGuestController',
+    'app/repository/eventRepository','libraries/bootstrap/js/ui-bootstrap-tpls-0.14.3.min','libraries/dateTimePicker/js/datetimepicker'],
+    function (Angular, ngRoute, EventListController, EventDetailController, EventAddController,GuestAddController, EventRepository) {
     'use strict'
 
     // modules
-    var Lafete = Angular.module('lafete', ['ngRoute', 'ui.bootstrap']);
+    var Lafete = Angular.module('lafete', ['ngRoute', 'ui.bootstrap','ui.bootstrap.datetimepicker']);
 
     // services
     EventRepository.$inject = ['$http'];
@@ -20,8 +22,11 @@ define(['frameworks/angular', 'libraries/angularRoute', 'app/controllers/event/l
     EventDetailController.$inject = ['$scope', '$routeParams', 'EventRepository'];
     Lafete.controller('EventDetailController', EventDetailController);
 
-    EventAddController.$inject = ['$scope', '$routeParams', 'EventRepository'];
+    EventAddController.$inject = ['$scope', '$location', 'EventRepository'];
     Lafete.controller('EventAddController', EventAddController);
+
+    GuestAddController.$inject = ['$scope','$routeParams'];
+    Lafete.controller('GuestAddController', GuestAddController);
 
     // routes
     Lafete.config(function($routeProvider) {
@@ -36,6 +41,9 @@ define(['frameworks/angular', 'libraries/angularRoute', 'app/controllers/event/l
         .when('/add', {
            controller: 'EventAddController',
            templateUrl: '/views/event/add.html'
+        }).when('/events/:eventId/addGuest',{
+            controller: 'GuestAddController',
+            templateUrl: '/views/guest/add.html'
         })
         .otherwise({
             redirectTo: '/events'

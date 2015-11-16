@@ -1,7 +1,7 @@
 define(['app/model/event'], function(Event) {
   'use strict';
 
-  var EventAddController = function($scope, $routeParams, EventRepository,event) {
+  var EventAddController = function($scope,$location, EventRepository) {
     this.scope = $scope;
 
     $scope.clearStartDate = function () {
@@ -33,6 +33,11 @@ define(['app/model/event'], function(Event) {
       startDateOpened: false,
       endDateOpened: false
     };
+    $scope.maxGuests=10;
+
+    EventRepository.all(function(events) {
+      this.scope.events = events;
+    }.bind(this));
 
     var refDate= new Date();
     refDate.setHours(12);
@@ -55,8 +60,22 @@ define(['app/model/event'], function(Event) {
         $scope.endTime.getHours(),
         $scope.endTime.getMinutes()
       );
+      var time = {
+        begin: begin,
+        end: end
+      }
+      var newEvent = new Event($scope.eventName,$scope.description,$scope.targetGroup,$scope.contributionDescription,$scope.location,time,$scope.maxGuests);
+      console.log(newEvent);
+      console.log(newEvent.times.begin);
+      console.log(newEvent.times.end);
+      EventRepository.add(
+        newEvent,
+        function(event) {
+          $location.path('/events/'+event.id);
+        },
+        function() {}
+      );
     }
   }
-
   return EventAddController;
 });
