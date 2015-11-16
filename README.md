@@ -113,3 +113,13 @@ Update guest
 	- Create Event View: Test über erfolgreiches Anlegen eines neuen Events
 	- Add Guest View: Test über erfolgreiches Hinzufügen eines neuen Gastes
 	- Test jeder Repository-Methode/API-Calls mit gemocktem $httpBackend.
+	
+## Zusätzliche Hinweise/Regeln
+- Teamarbeit: Mindestens 2 Personen, höchstens 3 Personen. Alle Personen müssen sich zu gleichen Teilen am Projekt beteiligen.
+- CSS Präprozessoren wie Less oder Sass sind erlaubt.
+- JavaScript Precompiler wie TypeScript oder CoffeeScript sind erlaubt. Dart ist nur als Präprozessor erlaubt (nicht mit Dartium-Browser).
+- RequireJS wird als Module-Loader verwendet.
+- Nebst Angular sind keine anderen Client-JavaScript-Frameworks/Libraries wie z.B. jQuery, ExtJS etc. erlaubt.
+- Für Page-Layouts dürfen keine CSS Floats, display-inline-block oder Tabellen eingesetzt werden.
+- Die Projektsource muss auf dem HSR Gitserver oder einem öffentlichen Gitserver wie GitHub oder GitBucket abgelegt werden und dem Übungsbetreuer muss Zugriff auf das Repository freigeschalten werden.
+
