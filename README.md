@@ -113,7 +113,8 @@ Update guest
 	- Create Event View: Test über erfolgreiches Anlegen eines neuen Events
 	- Add Guest View: Test über erfolgreiches Hinzufügen eines neuen Gastes
 	- Test jeder Repository-Methode/API-Calls mit gemocktem $httpBackend.
-## Zusätzliche Hinweise/Regeln
+	
+## Testat Kriterien  Zusätzliche Hinweise/Regeln
 -Teamarbeit: Mindestens 2 Personen, höchstens 3 Personen. Alle Personen müssen sich zu gleichen Teilen am Projekt beteiligen.
 - CSS Präprozessoren wie Less oder Sass sind erlaubt.
 - JavaScript Precompiler wie TypeScript oder CoffeeScript sind erlaubt. Dart ist nur als Präprozessor erlaubt (nicht mit Dartium-Browser).
