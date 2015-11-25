@@ -4,8 +4,8 @@
 // declare dependency to angular (similar to import in java)
 define(['frameworks/angular', 'libraries/angularRoute',
     'app/controllers/event/listController', 'app/controllers/event/detailController', 'app/controllers/event/addController','app/controllers/guest/addGuestController',
-    'app/repository/eventRepository','libraries/bootstrap/js/ui-bootstrap-tpls-0.14.3.min','libraries/dateTimePicker/js/datetimepicker'],
-    function (Angular, ngRoute, EventListController, EventDetailController, EventAddController,GuestAddController, EventRepository) {
+    'app/repository/eventRepository', 'app/repository/guestRepository','libraries/bootstrap/js/ui-bootstrap-tpls-0.14.3.min','libraries/dateTimePicker/js/datetimepicker'],
+    function (Angular, ngRoute, EventListController, EventDetailController, EventAddController,GuestAddController, EventRepository, GuestRepository) {
     'use strict'
 
     // modules
@@ -13,7 +13,9 @@ define(['frameworks/angular', 'libraries/angularRoute',
 
     // services
     EventRepository.$inject = ['$http'];
+    GuestRepository.$inject = ['$http'];
     Lafete.service('EventRepository', EventRepository);
+    Lafete.service('GuestRepository', GuestRepository);
 
     // controllers
     EventListController.$inject = ['$scope','EventRepository'];
@@ -25,7 +27,7 @@ define(['frameworks/angular', 'libraries/angularRoute',
     EventAddController.$inject = ['$scope', '$location', 'EventRepository'];
     Lafete.controller('EventAddController', EventAddController);
 
-    GuestAddController.$inject = ['$scope','$routeParams'];
+    GuestAddController.$inject = ['$scope','$routeParams', 'GuestRepository'];
     Lafete.controller('GuestAddController', GuestAddController);
 
     // routes
