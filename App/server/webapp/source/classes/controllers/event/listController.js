@@ -5,7 +5,8 @@ define(['app/repository/eventRepository'], function(eventRepository) {
 		this.scope = $scope;
 		eventRepository.all(function(events) {
 			this.scope.events = events;
-		}.bind(this));
+		}.bind(this),
+		function() {});
 	};
 
 	return EventListController;

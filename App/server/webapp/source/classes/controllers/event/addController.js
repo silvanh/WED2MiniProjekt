@@ -41,7 +41,8 @@ define(['app/model/event'], function(Event) {
 
     EventRepository.all(function(events) {
       this.scope.events = events;
-    }.bind(this));
+    }.bind(this),
+    function() {});
 
     var refDate= new Date();
     refDate.setHours(12);

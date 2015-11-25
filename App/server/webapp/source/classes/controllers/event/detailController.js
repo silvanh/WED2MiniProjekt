@@ -28,6 +28,10 @@ define([], function() {
         function() {}
       );
     }
+    
+    this.scope.back = function() {
+      $location.path('/');
+    }
 	}
 
 	return EventDetailController;
