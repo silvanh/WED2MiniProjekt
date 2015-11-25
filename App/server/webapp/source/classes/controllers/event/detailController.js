@@ -1,16 +1,33 @@
 define([], function() {
 	'use strict';
 
-	var EventDetailController = function($scope, $routeParams, EventRepository) {
+	var EventDetailController = function($scope, $routeParams, EventRepository, GuestRepository, $location) {
 		this.scope = $scope;
     EventRepository.get($routeParams.eventId,
       function(event) {
         this.scope.event = event;
-        this.scope.amountOfGuests = event.guests.length;
+
+        var amountOfGuests = 0
+        for(var guest in event.guests) {
+          if(!event.guests[guest].canceled) ++amountOfGuests;
+        }
+        this.scope.amountOfGuests = amountOfGuests;
       }.bind(this),
       function() {}
     );
-    
+
+    this.scope.cancelRegistration = function(guest) {
+      guest.canceled = true;
+      GuestRepository.update(
+        $routeParams.eventId,
+        guest.id,
+        guest,
+        function(guest) {
+          $location.path('/events/' + $routeParams.eventId);
+        },
+        function() {}
+      );
+    }
 	}
 
 	return EventDetailController;

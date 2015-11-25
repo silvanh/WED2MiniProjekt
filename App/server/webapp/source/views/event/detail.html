@@ -26,12 +26,17 @@
 
 <h3>Guests</h3>
 <ul>
-    <li data-ng-repeat="guest in event.guests">
-        <span>Name: {{guest.name}}</span>
-        <span data-ng-if="guest.comment" >Comment: {{guest.comment}}</span>
-        <span data-ng-if="guest.contribution" >Contribution: {{guest.contribution}}</span>
-        <span><a data-ng-href="#/events/{{event.id}}/editGuest/{{guest.id}}">Edit</a></span>
-        <span><a data-ng-href="#/events/{{event.id}}/addGuest">Cancel</a></span>
+    <li data-ng-if="amountOfGuests != 0" data-ng-repeat="guest in event.guests">
+    	<div data-ng-if="guest.canceled == false">
+	        <span>Name: {{guest.name}}</span>
+	        <span data-ng-if="guest.comment" >Comment: {{guest.comment}}</span>
+	        <span data-ng-if="guest.contribution" >Contribution: {{guest.contribution}}</span>
+	        <span><a data-ng-href="#/events/{{event.id}}/editGuest/{{guest.id}}">Edit</a></span>
+	        <span><a ng-click="cancelRegistration(guest)">Cancel</a></span>
+        </div>
     </li>
+    <div data-ng-if="amountOfGuests == 0">
+    	There are no registrated guests.
+    </div>
 </ul>
 <a data-ng-href="#/events/{{event.id}}/addGuest">Add a Guest</a>
