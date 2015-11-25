@@ -4,7 +4,6 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 
 	describe('EventRepository', function() {
 		var event, eventRepository, $http, $httpBackend;
-    var events = [{id: 1, name: 'Party'},{id: 2, name: 'Concert'}];
 
 		// setup
 		beforeEach(AngularMocks.inject(function($injector) {
@@ -12,15 +11,11 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 			$httpBackend = $injector.get('$httpBackend');
 
 			eventRepository = new EventRepository($http);
-			event = EventFactory.createEvent(1);
+			event = EventFactory.createEvent();
 
 			$httpBackend.when('GET', eventRepository.urls.all).respond({
-				events: events
+				events: [{id: 1, name: 'Party'},{id: 2, name: 'Concert'}]
 			});
-      $httpBackend.when('GET','/api/events/1').respond({
-        event: events[0]
-      });
-
 		}));
 
 		afterEach(function() {
@@ -35,23 +30,16 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 
 			describe('by object id', function() {
 				it('returns the object', function() {
-          $httpBackend.expectGET(eventRepository.urls.get.replace(':eventId', event.id));
-          var returnedEvent = null;
-          eventRepository.get(event.id,
-            function(theElement){
-              returnedEvent=theElement;
-            },function(){});
-          $httpBackend.flush();
-					expect(returnedEvent).toEqual(event);
+					expect(eventRepository.get(event.id)).toEqual(event);
 				});
 			});
-      /*
+
 			describe('by inexistent object id', function() {
 				it('returns null', function() {
 					expect(eventRepository.get(null)).toEqual(null);
 					expect(eventRepository.get('abvhf74n6')).toEqual(null);
 				});
-			});*/
+			});
 		});
 
 		describe('all()', function() {
