@@ -6,6 +6,7 @@ define([], function() {
     EventRepository.get($routeParams.eventId,
       function(event) {
         this.scope.event = event;
+        this.scope.amountOfGuests = event.guests.length;
       }.bind(this),
       function() {}
     );

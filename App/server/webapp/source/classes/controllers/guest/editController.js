@@ -11,6 +11,10 @@ define(['app/model/guest'], function(Guest) {
       function() {}
     );
 
+    this.scope.back = function() {
+      $location.path('/events/' + $routeParams.eventId);
+    }
+
     this.scope.editGuest =  function(){
       if( $scope.guest.name && $scope.guest.contribution && $scope.guest.comment) {
       	$scope.editGuestError = '';

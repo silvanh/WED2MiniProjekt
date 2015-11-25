@@ -1,4 +1,4 @@
-<h2>{{event.name}}</h2>
+<h2>{{event.name}} ({{amountOfGuests}} Guests)</h2>
 <p>{{event.description}}</p>
 <p data-ng-if="event.maximalAmoutOfGuests">
 <strong>Maximal amount of guests:</strong>
@@ -27,10 +27,11 @@
 <h3>Guests</h3>
 <ul>
     <li data-ng-repeat="guest in event.guests">
-        <div>Name: {{guest.name}}</div>
-        <div>Comment: {{guest.comment}}</div>
-        <div><a data-ng-href="#/events/{{event.id}}/addGuest">Cancel</a></div>
-        <div><a data-ng-href="#/events/{{event.id}}/editGuest/{{guest.id}}">Edit</a></div>
+        <span>Name: {{guest.name}}</span>
+        <span data-ng-if="guest.comment" >Comment: {{guest.comment}}</span>
+        <span data-ng-if="guest.contribution" >Contribution: {{guest.contribution}}</span>
+        <span><a data-ng-href="#/events/{{event.id}}/editGuest/{{guest.id}}">Edit</a></span>
+        <span><a data-ng-href="#/events/{{event.id}}/addGuest">Cancel</a></span>
     </li>
 </ul>
 <a data-ng-href="#/events/{{event.id}}/addGuest">Add a Guest</a>

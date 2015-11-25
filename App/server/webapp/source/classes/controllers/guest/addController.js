@@ -3,6 +3,11 @@ define(['app/model/guest'], function(Guest) {
 
   var GuestAddController = function($scope, $routeParams, GuestRepository, $location) {
     this.scope = $scope;
+    this.scope.eventId = $routeParams.eventId;
+
+    this.scope.back = function() {
+      $location.path('/events/' + $routeParams.eventId);
+    }
 
     this.scope.addGuest =  function(){
       if( $scope.guestName && $scope.guestContribution && $scope.guestComment) {
