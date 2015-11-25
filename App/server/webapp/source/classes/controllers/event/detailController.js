@@ -31,6 +31,10 @@ define([], function() {
       $location.path('/');
     }
 
+    this.scope.edit = function(){
+      $location.path('/events/' + $routeParams.eventId+'/editEvent');
+    }
+
     this.scope.updateAmountOfGuests = function(){
       var amountOfGuests = 0
       for(var guest in this.scope.event.guests) {
