@@ -27,7 +27,7 @@ define(['frameworks/angular', 'libraries/angularRoute',
     EventAddController.$inject = ['$scope', '$location', 'EventRepository'];
     Lafete.controller('EventAddController', EventAddController);
 
-    GuestAddController.$inject = ['$scope','$routeParams', 'GuestRepository'];
+    GuestAddController.$inject = ['$scope','$routeParams', 'GuestRepository', '$location'];
     Lafete.controller('GuestAddController', GuestAddController);
 
     // routes

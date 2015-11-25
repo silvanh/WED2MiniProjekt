@@ -10,7 +10,7 @@ define(['app/services/uuidService'], function(UUIDService){
     this.canceled=canceled;
   };
 
-  Event.createFromDTO = function(jsonData) {
+  Guest.createFromDTO = function(jsonData) {
     return new Guest(
       jsonData.name,
       jsonData.contribution,
@@ -20,5 +20,5 @@ define(['app/services/uuidService'], function(UUIDService){
     );
   };
 
-  return Event;
+  return Guest;
 });
