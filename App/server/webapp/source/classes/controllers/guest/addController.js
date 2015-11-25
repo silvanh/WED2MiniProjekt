@@ -10,9 +10,9 @@ define(['app/model/guest'], function(Guest) {
     }
 
     this.scope.addGuest =  function(){
-      if( $scope.guestName && $scope.guestContribution && $scope.guestComment) {
-      	$scope.addGuestError = '';
-      	var newGuest = new Guest($scope.guestName, $scope.guestContribution, $scope.guestComment, false);
+      if( this.scope.guestName && this.scope.guestContribution && this.scope.guestComment) {
+        this.scope.addGuestError = '';
+      	var newGuest = new Guest(this.scope.guestName, this.scope.guestContribution, this.scope.guestComment, false);
       	GuestRepository.add(
       		$routeParams.eventId,
         	newGuest,
@@ -22,10 +22,10 @@ define(['app/model/guest'], function(Guest) {
         	function() {}
       	);
       } else {
-      	$scope.addGuestError = "Please fill out all fields";
+        this.scope.addGuestError = "Please fill out all fields";
       }
       
-    }
+    }.bind(this)
   }
   return GuestAddController;
 });

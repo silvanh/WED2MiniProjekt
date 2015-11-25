@@ -16,22 +16,22 @@ define(['app/model/guest'], function(Guest) {
     }
 
     this.scope.editGuest =  function(){
-      if( $scope.guest.name && $scope.guest.contribution && $scope.guest.comment) {
-      	$scope.editGuestError = '';
+      if( this.scope.guest.name && this.scope.guest.contribution && this.scope.guest.comment) {
+        this.scope.editGuestError = '';
       	GuestRepository.update(
       		$routeParams.eventId,
       		$routeParams.guestId,
-        	$scope.guest,
+          this.scope.guest,
         	function(guest) {
         	  $location.path('/events/' + $routeParams.eventId);
         	},
         	function() {}
       	);
       } else {
-      	$scope.editGuestError = "Please fill out all fields";
+        this.scope.editGuestError = "Please fill out all fields";
       }
       
-    }
+    }.bind(this)
   }
   return GuestEditController;
 });
