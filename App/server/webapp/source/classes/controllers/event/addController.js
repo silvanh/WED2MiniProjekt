@@ -10,27 +10,27 @@ define(['app/model/event'], function(Event) {
 
     this.scope.clearStartDate = function () {
       this.scope.startDate = null;
-    }.bind(this);
+    }.bind(this)
 
     this.scope.clearEndDate = function () {
       this.scope.endDate = null;
-    }.bind(this);
+    }.bind(this)
 
     this.scope.openStartDate = function($event) {
       this.scope.status.startDateOpened = true;
-    }.bind(this);
+    }.bind(this)
 
     this.scope.openEndDate = function($event) {
       this.scope.status.endDateOpened = true;
-    }.bind(this);
+    }.bind(this)
 
     this.scope.setStartDate = function(year, month, day) {
       this.scope.startDate = new Date(year, month, day);
-    }.bind(this);
+    }.bind(this)
 
     this.scope.setEndDate = function(year, month, day) {
       this.scope.endDate = new Date(year, month, day);
-    }.bind(this);
+    }.bind(this)
 
     this.scope.format = 'dd-MM-yy';
     this.scope.status = {
