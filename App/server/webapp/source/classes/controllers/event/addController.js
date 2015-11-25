@@ -4,6 +4,10 @@ define(['app/model/event'], function(Event) {
   var EventAddController = function($scope,$location, EventRepository) {
     this.scope = $scope;
 
+    this.scope.back = function() {
+      $location.path('/');
+    }
+
     $scope.clearStartDate = function () {
       $scope.startDate = null;
     };
