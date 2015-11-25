@@ -1,1 +1,18 @@
-<div>{{test}}</div>
+<h2>Add Lunch-Guest</h2>
+<h3>
+    <span class="label label-pill label-default">Guest Name</span>
+</h3>
+
+<input type="text" class="form-control" placeholder="Name" ng-model="guestName">
+
+<h3>
+    <span class="label label-pill label-default">Contribution</span>
+</h3>
+<input type="text" class="form-control" placeholder="What is your contribution?" ng-model="guestContribution">
+
+<h3>
+    <span class="label label-pill label-default">Comment</span>
+</h3>
+<input type="text" class="form-control" placeholder="Comment" ng-model="guestComment">
+
+<input class="btn btn-primary" type="submit" value="Add Guest" ng-click="add()">
