@@ -61,7 +61,7 @@ define(['app/model/guest'], function(Guest) {
        * @param string guest identifier
        * @param Guest guest
        */
-      this.get = function(eventId, guestId, guestsuccessCallback, errorCallback) {
+      this.update = function(eventId, guestId, guest, successCallback, errorCallback) {
         $http.post(this.urls.update.replace(':eventId', eventId).replace(':guestId', guestId), guest)
           .success(function(guestDTO) {
             successCallback(Guest.createFromDTO(guestDTO));

@@ -9,6 +9,7 @@ define([], function() {
       }.bind(this),
       function() {}
     );
+    
 	}
 
 	return EventDetailController;

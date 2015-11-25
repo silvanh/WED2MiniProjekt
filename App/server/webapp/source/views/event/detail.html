@@ -23,10 +23,14 @@
 
 <h3 data-ng-if="event.preparation">Preparation</h3>
 <p data-ng-if="event.preparation">{{event.preparationBegin | date:"dd.MM.yy HH:mm"}} - {{event.preparationEnd | date:"dd.MM.yy HH:mm"}}</p>
-<a data-ng-href="#/events/{{event.id}}/addGuest">Add a Guest</a>
+
+<h3>Guests</h3>
 <ul>
     <li data-ng-repeat="guest in event.guests">
-        <div>{{guest.name}}</div>
-        <div>{{guest.comment}}</div>
+        <div>Name: {{guest.name}}</div>
+        <div>Comment: {{guest.comment}}</div>
+        <div><a data-ng-href="#/events/{{event.id}}/addGuest">Cancel</a></div>
+        <div><a data-ng-href="#/events/{{event.id}}/editGuest/{{guest.id}}">Edit</a></div>
     </li>
 </ul>
+<a data-ng-href="#/events/{{event.id}}/addGuest">Add a Guest</a>

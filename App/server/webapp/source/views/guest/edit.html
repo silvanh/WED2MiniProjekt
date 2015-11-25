@@ -1,0 +1,20 @@
+<h2>Edit Lunch-Guest</h2>
+<h3>
+    <span class="label label-pill label-default">Guest Name</span>
+</h3>
+
+<input type="text" class="form-control" placeholder="Name" ng-model="guest.name">
+
+<h3>
+    <span class="label label-pill label-default">Contribution</span>
+</h3>
+<input type="text" class="form-control" placeholder="What is your contribution?" ng-model="guest.contribution">
+
+<h3>
+    <span class="label label-pill label-default">Comment</span>
+</h3>
+<input type="text" class="form-control" placeholder="Comment" ng-model="guest.comment">
+
+<input class="btn btn-primary" type="submit" value="Edit Guest" ng-click="editGuest()">
+
+<div>{{editGuestError}}</div>
