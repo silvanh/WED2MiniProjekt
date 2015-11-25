@@ -8,11 +8,7 @@ define([], function() {
       function(event) {
         this.scope.event = event;
 
-        var amountOfGuests = 0
-        for(var guest in event.guests) {
-          if(!event.guests[guest].canceled) ++amountOfGuests;
-        }
-        this.scope.amountOfGuests = amountOfGuests;
+        this.scope.updateAmountOfGuests();
       }.bind(this),
       function() {}
     );
@@ -25,11 +21,7 @@ define([], function() {
         guest,
         function(guest) {
           $location.path('/events/' + $routeParams.eventId);
-          var amountOfGuests = 0
-          for(var guest in this.scope.event.guests) {
-            if(!this.scope.event.guests[guest].canceled) ++amountOfGuests;
-          }
-          this.scope.amountOfGuests = amountOfGuests;
+          this.scope.updateAmountOfGuests();
         }.bind(this),
         function() {}
       );
@@ -38,6 +30,14 @@ define([], function() {
     this.scope.back = function() {
       $location.path('/');
     }
+
+    this.scope.updateAmountOfGuests = function(){
+      var amountOfGuests = 0
+      for(var guest in this.scope.event.guests) {
+        if(!this.scope.event.guests[guest].canceled) ++amountOfGuests;
+      }
+      this.scope.amountOfGuests = amountOfGuests;
+    }.bind(this)
 	}
 
 	return EventDetailController;
