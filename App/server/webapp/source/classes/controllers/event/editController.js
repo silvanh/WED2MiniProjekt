@@ -1,7 +1,7 @@
 define(['app/model/event'], function(Event) {
   'use strict';
 
-  var EventEditController = function($scope, $routeParams, EventRepository, $location) {
+  var EventEditController = function($scope, $routeParams, EventRepository, $location, NotificationService) {
     this.scope = $scope;
 
     this.scope.action="Edit Event"
@@ -25,7 +25,6 @@ define(['app/model/event'], function(Event) {
       this.scope.targetGroup =this.scope.event.targetGroup;
       this.scope.contributionDescription = this.scope.event.contributionsDescription;
       this.scope.location= this.scope.event.location;
-      this.scope.maxGuests = this.scope.event.maximalAmountOfGuests;
     }.bind(this)
 
     this.scope.back = function () {
@@ -61,7 +60,6 @@ define(['app/model/event'], function(Event) {
       startDateOpened: false,
       endDateOpened: false
     };
-    this.scope.maxGuests = 10;
 
     EventRepository.all(function (events) {
         this.scope.events = events;
@@ -70,44 +68,40 @@ define(['app/model/event'], function(Event) {
       });
 
     this.scope.doAction = function () {
-      var begin = new Date(
-        this.scope.startDate.getFullYear(),
-        this.scope.startDate.getMonth(),
-        this.scope.startDate.getDate(),
-        this.scope.startTime.getHours(),
-        this.scope.startDate.getMinutes()
-      );
-      var end = new Date(
-        this.scope.endDate.getFullYear(),
-        this.scope.endDate.getMonth(),
-        this.scope.endDate.getDate(),
-        this.scope.endTime.getHours(),
-        this.scope.endTime.getMinutes()
-      );
-      var time = {
-        begin: begin,
-        end: end
+      if(!(this.scope.startDate&&this.scope.endDate&&this.scope.startTime&&this.scope.endTime&&this.scope.eventName&&this.scope.description&&this.scope.targetGroup&&this.scope.contributionDescription&&this.scope.location&&this.scope.location.name&&this.scope.location.street&&this.scope.location.plz&&this.scope.location.city)){
+        NotificationService.error("please fill in all fields");
+      }else{
+        var begin = new Date(
+          this.scope.startDate.getFullYear(),
+          this.scope.startDate.getMonth(),
+          this.scope.startDate.getDate(),
+          this.scope.startTime.getHours(),
+          this.scope.startDate.getMinutes()
+        );
+        var end = new Date(
+          this.scope.endDate.getFullYear(),
+          this.scope.endDate.getMonth(),
+          this.scope.endDate.getDate(),
+          this.scope.endTime.getHours(),
+          this.scope.endTime.getMinutes()
+        );
+        var time = {
+          begin: begin,
+          end: end
+        }
+        var newEvent = new Event(this.scope.eventName, this.scope.description, this.scope.targetGroup, this.scope.contributionDescription, this.scope.location, time);
+        EventRepository.edit(
+          $routeParams.eventId,
+          newEvent,
+          function (event) {
+            $location.path('/events/' + event.id);
+            NotificationService.info(event.name + " edited");
+          },
+          function () {
+          }
+        );
       }
-      var newEvent = new Event(this.scope.eventName, this.scope.description, this.scope.targetGroup, this.scope.contributionDescription, this.scope.location, time, this.scope.maxGuests);
-      EventRepository.edit(
-        $routeParams.eventId,
-        newEvent,
-        function (event) {
-          $location.path('/events/' + event.id);
-        },
-        function () {
-        }
-      );
-      /*EventRepository.add(
-        newEvent,
-        function (event) {
-          $location.path('/events/' + event.id);
-        },
-        function () {
-        }
-      );*/
     }.bind(this)
-
   }
   return EventEditController;
 });

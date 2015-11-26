@@ -1,7 +1,7 @@
 define(['app/model/guest'], function(Guest) {
   'use strict';
 
-  var GuestEditController = function($scope, $routeParams, GuestRepository, $location) {
+  var GuestEditController = function($scope, $routeParams, GuestRepository, $location, NotificationService) {
     this.scope = $scope;
     GuestRepository.get($routeParams.eventId, 
       $routeParams.guestId,
@@ -36,11 +36,12 @@ define(['app/model/guest'], function(Guest) {
           this.scope.guest,
         	function(guest) {
         	  $location.path('/events/' + $routeParams.eventId);
+            NotificationService.info(guest.name + " edited");
         	},
         	function() {}
       	);
       } else {
-        this.scope.editGuestError = "Please fill out all fields";
+        NotificationService.error("please fill in all fields");
       }
       
     }.bind(this)

@@ -29,13 +29,13 @@ define(['frameworks/angular', 'libraries/angularRoute','libraries/ngAnimate/angu
     EventAddController.$inject = ['$scope', '$location', 'EventRepository','NotificationService'];
     Lafete.controller('EventAddController', EventAddController);
 
-    EventEditController.$inject = ['$scope','$routeParams', 'EventRepository', '$location'];
+    EventEditController.$inject = ['$scope','$routeParams', 'EventRepository', '$location','NotificationService'];
     Lafete.controller('EventEditController', EventEditController);
 
     GuestAddController.$inject = ['$scope','$routeParams', 'GuestRepository', '$location','NotificationService'];
     Lafete.controller('GuestAddController', GuestAddController);
 
-    GuestEditController.$inject = ['$scope','$routeParams', 'GuestRepository', '$location'];
+    GuestEditController.$inject = ['$scope','$routeParams', 'GuestRepository', '$location','NotificationService'];
     Lafete.controller('GuestEditController', GuestEditController);
 
     // routes
