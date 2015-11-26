@@ -5,10 +5,13 @@
     <title>Lafete</title>
     <link rel="stylesheet" type="text/css" href="./libraries/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="./libraries/dateTimePicker/css/datetimepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="./assets/style.css"/>
 </head>
 <body>
     <!-- View Container -->
-    <div ng-view></div>
+    <div id="container">
+    	<div  id="content" ng-view></div>
+    </div>
     <!-- Libraries, Frameworks, Applikationscode -->
     <script src="./libraries/require/require-js.min.js" data-main="./classes/main.js"></script>
 </body>
