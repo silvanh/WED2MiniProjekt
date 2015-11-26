@@ -4,6 +4,8 @@ define(['app/model/event'], function(Event) {
   var EventAddController = function($scope,$location, EventRepository) {
     this.scope = $scope;
 
+    this.scope.action="Add Event"
+
     this.scope.back = function() {
       $location.path('/');
     }
@@ -50,7 +52,7 @@ define(['app/model/event'], function(Event) {
     this.scope.startTime = refDate;
     this.scope.endTime= refDate;
 
-    this.scope.add =  function(){
+    this.scope.doAction =  function(){
       var begin = new Date(
         this.scope.startDate.getFullYear(),
         this.scope.startDate.getMonth(),
