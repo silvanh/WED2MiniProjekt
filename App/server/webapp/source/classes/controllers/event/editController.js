@@ -4,6 +4,8 @@ define(['app/model/event'], function(Event) {
   var EventEditController = function($scope, $routeParams, EventRepository, $location) {
     this.scope = $scope;
 
+    this.scope.action="Edit Event"
+
     EventRepository.get($routeParams.eventId,
       function (event) {
         this.scope.event = event;
@@ -67,7 +69,7 @@ define(['app/model/event'], function(Event) {
       function () {
       });
 
-    this.scope.edit = function () {
+    this.scope.doAction = function () {
       var begin = new Date(
         this.scope.startDate.getFullYear(),
         this.scope.startDate.getMonth(),

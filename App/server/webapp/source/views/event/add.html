@@ -60,7 +60,7 @@
 <div>{{maxGuests}}</div>
 <input type="range" class="form-control"  ng-model="maxGuests" min="1" max="100">
 
-<input class="btn btn-primary" type="submit" value="Add Event" ng-click="add()">
+<input class="btn btn-primary" type="submit" value="{{action}}" ng-click="doAction()">
 <input class="btn btn-primary" type="button" value="Cancel" ng-click="back()">
 
 <!--datetimepicker data-ng-model="data.date" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
