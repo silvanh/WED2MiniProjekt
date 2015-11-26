@@ -1,7 +1,7 @@
 define(['app/model/event'], function(Event) {
   'use strict';
 
-  var EventAddController = function($scope,$location, EventRepository) {
+  var EventAddController = function($scope,$location, EventRepository,NotificationService) {
     this.scope = $scope;
 
     this.scope.action="Add Event"

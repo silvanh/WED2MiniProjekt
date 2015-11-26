@@ -26,10 +26,6 @@ define(['app/model/guest'], function(Guest) {
     this.scope.titel="Edit Lunch-Guest"
 
     this.scope.doAction =  function(){
-      console.log("vorher");
-      console.log(this.scope.guestName);
-      console.log(this.scope.guestContribution);
-      console.log(this.scope.guestComment);
       if(this.scope.guestName && this.scope.guestContribution && this.scope.guestComment) {
         console.log("abkabsdlkja");
         this.scope.guest = new Guest(this.scope.guestName, this.scope.guestContribution, this.scope.guestComment, false);
