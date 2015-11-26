@@ -1,4 +1,4 @@
-<h2>Add Lunch-Guest</h2>
+<h2>{{titel}}</h2>
 <h3>
     <span class="label label-pill label-default">Guest Name</span>
 </h3>
@@ -15,7 +15,7 @@
 </h3>
 <input type="text" class="form-control" placeholder="Comment" ng-model="guestComment">
 
-<input class="btn btn-primary" type="submit" value="Add Guest" ng-click="addGuest()">
+<input class="btn btn-primary" type="submit" value="{{action}}" ng-click="doAction()">
 <input class="btn btn-primary" type="button" value="Cancel" ng-click="back()">
 
 <div>{{addGuestError}}</div>

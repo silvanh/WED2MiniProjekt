@@ -9,8 +9,11 @@ define(['app/model/guest'], function(Guest) {
       $location.path('/events/' + $routeParams.eventId);
     }
 
+    this.scope.action="Add Guest"
+    this.scope.titel="Add Lunch-Guest"
+
     //TODO Check if reached MaxAmountOfGuests
-    this.scope.addGuest =  function(){
+    this.scope.doAction =  function(){
       if( this.scope.guestName && this.scope.guestContribution && this.scope.guestComment) {
         this.scope.addGuestError = '';
       	var newGuest = new Guest(this.scope.guestName, this.scope.guestContribution, this.scope.guestComment, false);
