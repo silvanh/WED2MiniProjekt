@@ -1,6 +1,6 @@
 define(['tests/factories/guestFactory','app/model/guest'],
-	function(GuestFactory, Guest) {
-	'use strict';
+function(GuestFactory, Guest) {
+'use strict';
 
 	describe('Guest', function() {
 		var guest;
@@ -13,7 +13,7 @@ define(['tests/factories/guestFactory','app/model/guest'],
 		describe('set property name', function(){
 			it('changes the property', function() {
 				expect(guest.name)
-					.toEqual('Markus Stolze'));
+					.toEqual('Markus Stolze');
 				guest.name = 'Markus Stolze';
 				expect(guest.name)
 					.toEqual('Markus Stolze');
@@ -33,7 +33,7 @@ define(['tests/factories/guestFactory','app/model/guest'],
 		describe('set property comment', function() {
 			it('changes the property', function() {
 				expect(guest.comment)
-					.toEqual('Ich bringe einen Kuchen');
+					.toEqual('Ich trinke nur Jägermeister');
 				guest.comment = 'Ich bringe einen Kuchen';
 				expect(guest.comment)
 					.toEqual('Ich bringe einen Kuchen');

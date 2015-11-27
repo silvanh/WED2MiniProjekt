@@ -3,7 +3,7 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 	'use strict';
 
 	describe('EventRepository', function() {
-		var event, eventRepository, $http, $httpBackend;
+		var event, events, eventRepository, $http, $httpBackend;
 
 		// setup
 		beforeEach(AngularMocks.inject(function($injector) {
@@ -11,11 +11,17 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 			$httpBackend = $injector.get('$httpBackend');
 
 			eventRepository = new EventRepository($http);
-			event = EventFactory.createEvent();
+			event = EventFactory.createEvent(1);
+			events = [EventFactory.createEvent(1), EventFactory.createEvent(2)];
 
+			$httpBackend.when('GET', '/api/events/1').respond(event);
+			$httpBackend.when('GET', '/api/events/null').respond(404, 'Event (id null) not found.');
+			$httpBackend.when('GET', '/api/events/dsaljfds').respond(404, 'Event (id dsaljfds) not found.');
+			$httpBackend.when('POST', '/api/events').respond(event);
 			$httpBackend.when('GET', eventRepository.urls.all).respond({
-				events: [{id: 1, name: 'Party'},{id: 2, name: 'Concert'}]
+				events: events
 			});
+		
 		}));
 
 		afterEach(function() {
@@ -24,80 +30,62 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 		});
 
 		describe('get()', function() {
-			beforeEach(function() {
-				eventRepository.add(event);
-			});
-
 			describe('by object id', function() {
 				it('returns the object', function() {
-					expect(eventRepository.get(event.id)).toEqual(event);
+					eventRepository.get(event.id, function(newEvent){
+					     expect(event.id).toEqual(newEvent.id);		
+					}, function(){});
+					$httpBackend.flush();
 				});
 			});
 
 			describe('by inexistent object id', function() {
 				it('returns null', function() {
-					expect(eventRepository.get(null)).toEqual(null);
-					expect(eventRepository.get('abvhf74n6')).toEqual(null);
+					eventRepository.get(null, function() {
+					}, function(error){
+						expect(error).toEqual('Event (id null) not found.');
+					});
+
+					eventRepository.get('dsaljfds', function() {
+					}, function(error){
+						expect(error).toEqual('Event (id dsaljfds) not found.');
+					});
+					$httpBackend.flush();
 				});
 			});
 		});
 
 		describe('all()', function() {
 			it('returns an Array', function() {
-				$httpBackend.expectGET(eventRepository.urls.all);
-				var events = null;
-				eventRepository.all(function(eventList) {
-					events = eventList;
-				});
+				eventRepository.all(function(events) {
+					expect(events).toEqual(jasmine.any(Array));
+				}, function(){});
 				$httpBackend.flush();
-				expect(events).toEqual(jasmine.any(Array));
 			});
 
 			it('returns two events', function() {
-				$httpBackend.expectGET(eventRepository.urls.all);
-				var events = null;
-				eventRepository.all(function(eventList) {
-					events = eventList;
-				});
+				eventRepository.all(function(events) {
+					expect(events.length).toEqual(2);
+				}, function(){});
 				$httpBackend.flush();
-				expect(events.length).toEqual(2);
 			});
 
 			it('returns real javascript objects', function() {
-					$httpBackend.expectGET(eventRepository.urls.all);
-					var events = null;
-					eventRepository.all(function(eventList) {
-						events = eventList;
-					});
-					$httpBackend.flush();
+				eventRepository.all(function(events) {
 					expect(events[0]).toEqual(jasmine.any(Event));
 					expect(events[1]).toEqual(jasmine.any(Event));
+				}, function(){});
+				$httpBackend.flush();
 			});
 		});
 
-		/*describe('add()', function() {
+		describe('add()', function() {
 			it('inserts element', function() {
-				var status1 = eventRepository.add(event);
-				expect(status1).toBe(true);
+				eventRepository.add(event, function(newEvent){
+					expect(newEvent.id).toEqual(event.id);
+				}, function(){});
+				$httpBackend.flush();
 			});
-
-			describe('same element again', function() {
-				var size, status2;
-
-				beforeEach(function() {
-					eventRepository.add(event);
-
-					size = eventRepository.events.length;
-					status2 = eventRepository.add(event);
-				});
-
-				it('doesn\'t affect repository size', function() {
-					expect(eventRepository.events.length).toBe(size);
-				});
-				it('returns false', function() {
-					expect(status2).toBe(false);
-				});
-			});
-		});*/
+		});
 	});
 });

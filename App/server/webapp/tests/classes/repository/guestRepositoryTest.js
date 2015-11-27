@@ -1,9 +1,9 @@
-define(['tests/factories/guestFactory', 'app/model/guest', 'app/repository/guestRepository', 'app/repository/eventRepository', 'libraries/angularMocks'],
-	function (GuestFactory, Guest, GuestRepository, EventRepository, AngularMocks) {
+define(['tests/factories/eventFactory', 'tests/factories/guestFactory', 'app/model/guest', 'app/repository/guestRepository', 'app/repository/eventRepository', 'libraries/angularMocks'],
+	function (EventFactory, GuestFactory, Guest, GuestRepository, EventRepository, AngularMocks) {
 	'use strict';
 
 	describe('GuestRepository', function() {
-		var guest, guestRepository, $http, $httpBackend;
+		var guest, guests, guestRepository, $http, $httpBackend, eventRepository;
 
 		// setup
 		beforeEach(AngularMocks.inject(function($injector) {
@@ -11,14 +11,18 @@ define(['tests/factories/guestFactory', 'app/model/guest', 'app/repository/guest
 			$httpBackend = $injector.get('$httpBackend');
 
 			eventRepository = new EventRepository($http);
-			event = EventFactory.createEvent();
+			event = EventFactory.createEvent(1);
 
-			guestRepository = new guestRepository($http);
-			guest = GuestFactory.createGuest();
+			guestRepository = new GuestRepository($http);
+			guest = GuestFactory.createGuest(1);
+			guests = [GuestFactory.createGuest(1), GuestFactory.createGuest(2)];
 
+			$httpBackend.when('GET', '/api/events/1/guests/1').respond(guest);
+			$httpBackend.when('GET', '/api/events/1/guests/null').respond(404, 'Guest (id null) not found.');
+			$httpBackend.when('GET', '/api/events/1/guests/dsaljfds').respond(404, 'Guest (id dsaljfds) not found.');
+			$httpBackend.when('POST', '/api/guests').respond(event);
 			$httpBackend.when('GET', guestRepository.urls.all).respond({
-				guests: [{id: 1, name: 'Farhad Mehta', contribution: 'Torte', comment: 'Ich bringe eine Torte', canceled: false},
-						{id: 2, name: 'Luc Bläser', contribution: 'äpfel', comment: 'Ich bringe eine äpfel', canceled: false}]
+				guests: guests
 			});
 		}));
 
@@ -28,81 +32,59 @@ define(['tests/factories/guestFactory', 'app/model/guest', 'app/repository/guest
 		});
 
 		describe('get()', function() {
-			beforeEach(function() {
-				eventRepository.add(event);
-				guestRepository.add(event.id, guest);
-			});
-
 			describe('by object id', function() {
 				it('returns the object', function() {
-					expect(guestRepository.get(event.id, guest.id)).toEqual(guest);
+					guestRepository.get(event.id, guest.id, function(newGuest) {
+						expect(newGuest.id).toEqual(guest.id);
+					}, function(){};
+					$httpBackend.flush();
 				});
 			});
 
 			describe('by inexistent object id', function() {
 				it('returns null', function() {
-					expect(guestRepository.get(null, null)).toEqual(null);
-					expect(guestRepository.get('abvhf74n6', 'abvhf74n6')).toEqual(null);
+					guestRepository.get(null, null, function(){}, function(error){
+						expect(error).toEqual('Event (id null) not found.');
+					});
+					guestRepository.get('abvhf74n6', 'abvhf74n6', function(){}, function(error){
+						expect(error).toEqual('Guest (id dsaljfds) not found.')
+					});
+					$httpBackend.flush();
 				});
 			});
 		});
 
 		describe('all()', function() {
 			it('returns an Array', function() {
-				$httpBackend.expectGET(guestRepository.urls.all);
-				var guests = null;
-				guestRepository.all(function(guestList) {
-					guests = guestList;
+				guestRepository.all(function(guests) {
+					expect(guests).toEqual(jasmine.any(Array));
 				});
 				$httpBackend.flush();
-				expect(guests).toEqual(jasmine.any(Array));
 			});
 
 			it('returns two guests', function() {
-				$httpBackend.expectGET(guestRepository.urls.all);
-				var guests = null;
-				guestRepository.all(function(guestList) {
-					guests = guestList;
+				guestRepository.all(function(guests) {
+					expect(guests.length).toEqual(2);
 				});
 				$httpBackend.flush();
-				expect(guests.length).toEqual(2);
 			});
 
 			it('returns real javascript objects', function() {
-					$httpBackend.expectGET(guestRepository.urls.all);
-					var guests = null;
-					guestRepository.all(function(guestList) {
-						guests = guestList;
-					});
-					$httpBackend.flush();
+				guestRepository.all(function(guests) {
 					expect(guests[0]).toEqual(jasmine.any(Guest));
 					expect(guests[1]).toEqual(jasmine.any(Guest));
+				});
+				$httpBackend.flush();
 			});
 		});
 
-		/*describe('add()', function() {
+		describe('add()', function() {
 			it('inserts element', function() {
-				var status1 = guestRepository.add(guest);
-				expect(status1).toBe(true);
+				guestRepository.add(guest, function(newGuest){
+					expect(newGuest.id).toEqual(guest.id);
+				}, function(){});
+				$httpBackend.flush();
 			});
-
-			describe('same element again', function() {
-				var size, status2;
-
-				beforeEach(function() {
-					guestRepository.add(guest);
-
-					size = guestRepository.guests.length;
-					status2 = guestRepository.add(guest);
-				});
-
-				it('doesn\'t affect repository size', function() {
-					expect(guestRepository.guests.length).toBe(size);
-				});
-				it('returns false', function() {
-					expect(status2).toBe(false);
-				});
-			});
-		});*/
+		});
 	});
 });
