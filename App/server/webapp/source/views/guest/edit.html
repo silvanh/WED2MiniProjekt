@@ -1,21 +1,21 @@
-<h2>Edit Lunch-Guest</h2>
+<h2>{{titel}}</h2>
 <h3>
-    <span class="label label-pill label-default">Guest Name</span>
+  <span class="label label-pill label-default">Guest Name</span>
 </h3>
 
-<input type="text" class="form-control" placeholder="Name" ng-model="guest.name">
+<input type="text" class="form-control" placeholder="Name" ng-model="guestName">
 
 <h3>
-    <span class="label label-pill label-default">Contribution</span>
+  <span class="label label-pill label-default">Contribution</span>
 </h3>
-<input type="text" class="form-control" placeholder="What is your contribution?" ng-model="guest.contribution">
+<input type="text" class="form-control" placeholder="What is your contribution?" ng-model="guestContribution">
 
 <h3>
-    <span class="label label-pill label-default">Comment</span>
+  <span class="label label-pill label-default">Comment</span>
 </h3>
-<input type="text" class="form-control" placeholder="Comment" ng-model="guest.comment">
+<input type="text" class="form-control" placeholder="Comment" ng-model="guestComment">
 
-<input class="btn btn-primary" type="submit" value="Edit Guest" ng-click="editGuest()">
+<input class="btn btn-primary" type="submit" value="{{action}}" ng-click="doAction()">
 <input class="btn btn-primary" type="button" value="Cancel" ng-click="back()">
 
-<div>{{editGuestError}}</div>
+<div>{{addGuestError}}</div>

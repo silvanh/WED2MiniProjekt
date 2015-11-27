@@ -5,6 +5,7 @@
     <title>Lafete</title>
     <link rel="stylesheet" type="text/css" href="./libraries/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="./libraries/dateTimePicker/css/datetimepicker.css"/>
+    <link rel="stylesheet" href="./libraries/angularToaster/toaster.min.css"/>
     <link rel="stylesheet" type="text/css" href="./assets/style.css"/>
 </head>
 <body>
@@ -12,6 +13,7 @@
     <div id="container">
     	<div  id="content" ng-view></div>
     </div>
+    <toaster-container></toaster-container>
     <!-- Libraries, Frameworks, Applikationscode -->
     <script src="./libraries/require/require-js.min.js" data-main="./classes/main.js"></script>
 </body>
