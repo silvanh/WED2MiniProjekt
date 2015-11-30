@@ -18,6 +18,7 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 			$httpBackend.when('GET', '/api/events/null').respond(404, 'Event (id null) not found.');
 			$httpBackend.when('GET', '/api/events/dsaljfds').respond(404, 'Event (id dsaljfds) not found.');
 			$httpBackend.when('POST', '/api/events').respond(event);
+      $httpBackend.when('POST', '/api/events/1').respond(event);
 			$httpBackend.when('GET', eventRepository.urls.all).respond({
 				events: events
 			});
@@ -87,5 +88,14 @@ define(['tests/factories/eventFactory', 'app/model/event', 'app/repository/event
 				$httpBackend.flush();
 			});
 		});
+
+    describe('edit()', function() {
+      it('update an event', function() {
+        eventRepository.edit(event.id,event, function(editedEvent){
+          expect(editedEvent.id).toEqual(event.id);
+        }, function(){});
+        $httpBackend.flush();
+      });
+    });
 	});
 });

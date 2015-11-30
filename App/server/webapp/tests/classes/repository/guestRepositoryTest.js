@@ -3,7 +3,7 @@ define(['tests/factories/eventFactory', 'tests/factories/guestFactory', 'app/mod
 	'use strict';
 
 	describe('GuestRepository', function() {
-		var guest, guests, guestRepository, $http, $httpBackend, eventRepository;
+		var event, guest, guests, guestRepository, $http, $httpBackend, eventRepository;
 
 		// setup
 		beforeEach(AngularMocks.inject(function($injector) {
@@ -17,11 +17,12 @@ define(['tests/factories/eventFactory', 'tests/factories/guestFactory', 'app/mod
 			guest = GuestFactory.createGuest(1);
 			guests = [GuestFactory.createGuest(1), GuestFactory.createGuest(2)];
 
-			$httpBackend.when('GET', '/api/events/1/guests/1').respond(guest);
+			$httpBackend.when('GET', guestRepository.urls.update.replace(':eventId',event.id).replace(':guestId',guest.id)).respond(guest);
 			$httpBackend.when('GET', '/api/events/1/guests/null').respond(404, 'Guest (id null) not found.');
 			$httpBackend.when('GET', '/api/events/1/guests/dsaljfds').respond(404, 'Guest (id dsaljfds) not found.');
-			$httpBackend.when('POST', '/api/guests').respond(event);
-			$httpBackend.when('GET', guestRepository.urls.all).respond({
+			$httpBackend.when('POST', guestRepository.urls.update.replace(':eventId',event.id).replace(':guestId',guest.id)).respond(event);
+      $httpBackend.when('POST', guestRepository.urls.add.replace(':eventId',event.id)).respond(guest);
+			$httpBackend.when('GET', guestRepository.urls.all.replace(':eventId',event.id)).respond({
 				guests: guests
 			});
 		}));
@@ -32,45 +33,53 @@ define(['tests/factories/eventFactory', 'tests/factories/guestFactory', 'app/mod
 		});
 
 		describe('get()', function() {
-			describe('by object id', function() {
-				it('returns the object', function() {
-					guestRepository.get(event.id, guest.id, function(newGuest) {
-						expect(newGuest.id).toEqual(guest.id);
-					}, function(){};
-					$httpBackend.flush();
-				});
-			});
+      describe('by object id', function () {
+        it('returns the object', function () {
+          guestRepository.get(event.id, guest.id, function (newGuest) {
+            expect(newGuest.id).toEqual(guest.id);
+          }, function () {
+          });
+          $httpBackend.flush();
+        });
+      });
 
 			describe('by inexistent object id', function() {
-				it('returns null', function() {
-					guestRepository.get(null, null, function(){}, function(error){
-						expect(error).toEqual('Event (id null) not found.');
-					});
-					guestRepository.get('abvhf74n6', 'abvhf74n6', function(){}, function(error){
+				it('id= null', function() {
+					guestRepository.get(event.id, null, function(){}, function(error){
+						expect(error).toEqual('Guest (id null) not found.');
+					});/*
+					guestRepository.get(event.id, 'abvhf74n6', function(){}, function(error){
 						expect(error).toEqual('Guest (id dsaljfds) not found.')
-					});
+					});*/
 					$httpBackend.flush();
 				});
+
+        it('id = dsaljfds', function() {
+           guestRepository.get(event.id, 'dsaljfds', function(){}, function(error){
+           expect(error).toEqual('Guest (id dsaljfds) not found.')
+           });
+          $httpBackend.flush();
+        });
 			});
 		});
 
 		describe('all()', function() {
 			it('returns an Array', function() {
-				guestRepository.all(function(guests) {
+				guestRepository.all(event.id, function(guests) {
 					expect(guests).toEqual(jasmine.any(Array));
 				});
 				$httpBackend.flush();
 			});
 
 			it('returns two guests', function() {
-				guestRepository.all(function(guests) {
+				guestRepository.all(event.id, function(guests) {
 					expect(guests.length).toEqual(2);
 				});
 				$httpBackend.flush();
 			});
 
 			it('returns real javascript objects', function() {
-				guestRepository.all(function(guests) {
+				guestRepository.all(event.id, function(guests) {
 					expect(guests[0]).toEqual(jasmine.any(Guest));
 					expect(guests[1]).toEqual(jasmine.any(Guest));
 				});
@@ -80,11 +89,21 @@ define(['tests/factories/eventFactory', 'tests/factories/guestFactory', 'app/mod
 
 		describe('add()', function() {
 			it('inserts element', function() {
-				guestRepository.add(guest, function(newGuest){
+				guestRepository.add(event.id, guest, function(newGuest){
 					expect(newGuest.id).toEqual(guest.id);
 				}, function(){});
 				$httpBackend.flush();
 			});
 		});
+
+    describe('update()', function() {
+      it('update element', function () {
+        guestRepository.update(event.id, guest.id, guest, function (newGuest) {
+          expect(newGuest.id).toEqual(guest.id);
+        }, function () {
+        });
+        $httpBackend.flush();
+      });
+    });
 	});
 });
