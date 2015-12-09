@@ -75,3 +75,8 @@ input:invalid {
 input:valid {
   border: 1px solid green;
 }
+
+.move-to-top {
+  position: relative;
+  top: -34px
+}
