@@ -1,4 +1,4 @@
-<input type="text" class="form-control" placeholder="Event name" ng-model="eventName">
+<input type="text" class="form-control" placeholder="Event name" ng-model="eventName" ng-required="true">
 
 <h3>
   <span class="label label-pill label-default">Begin</span>
@@ -29,12 +29,12 @@
 <h3>
   <span class="label label-pill label-default">Description</span>
 </h3>
-<input type="text" class="form-control" placeholder="..." ng-model="description">
+<input type="text" class="form-control" placeholder="Add a description" ng-model="description" ng-required="true">
 
 <h3>
   <span class="label label-pill label-default">Target group</span>
 </h3>
-<input type="text" list="targets" class="form-control" placeholder="..." ng-model="targetGroup">
+<input type="text" list="targets" class="form-control" placeholder="Add a traget group" ng-model="targetGroup" ng-required="true">
 <datalist id="targets">
   <option ng-repeat="event in events" value="{{event.targetGroup}}"></option>
 </datalist>
@@ -42,20 +42,20 @@
 <h3>
   <span class="label label-pill label-default">Contribution Description</span>
 </h3>
-<input type="text" class="form-control" placeholder="..." ng-model="contributionDescription">
+<input type="text" class="form-control" placeholder="Add a contribution description" ng-model="contributionDescription" ng-required="true">
 <h3>
   <span class="label label-pill label-default">Location</span>
 </h3>
 <h4>Name</h4>
-<input type="text" class="form-control" placeholder="..." ng-model="location.name">
+<input type="text" class="form-control" placeholder="Add a Location-name" ng-model="location.name" ng-required="true">
 <h4>street</h4>
-<input type="text" class="form-control" placeholder="..." ng-model="location.street">
+<input type="text" class="form-control" placeholder="Add a street" ng-model="location.street" ng-required="true">
 <h4>zip-Code</h4>
-<input type="text" class="form-control" placeholder="..." ng-model="location.plz">
+<input type="number" class="form-control" placeholder="Add a zipcode, eg: 8640" ng-model="location.plz" ng-required="true">
 <h4>city</h4>
-<input type="text" class="form-control" placeholder="..." ng-model="location.city">
+<input type="text" class="form-control" placeholder="Add a city" ng-model="location.city" ng-required="true">
 
-<input class="btn btn-primary" type="submit" value="{{action}}" ng-click="doAction()">
+<input class="btn btn-primary" type="submit" value="{{action}}" ng-click="doAction()" ng-required="true">
 <input class="btn btn-primary" type="button" value="Cancel" ng-click="back()">
 
 <!--datetimepicker data-ng-model="data.date" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
